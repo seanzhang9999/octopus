@@ -1,0 +1,50 @@
+{
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "DID did:wba:localhost%3A9527:wba:user:3ea884878ea5fbb1 JSON-RPC Interface",
+    "version": "0.1.0",
+    "description": "Methods offered by DID did:wba:localhost%3A9527:wba:user:3ea884878ea5fbb1"
+  },
+  "methods": [
+    {
+      "name": "hello",
+      "summary": "\n    这是一个打招呼的API，传入message参数即可返回问候语。\n    ",
+      "description": "由 我的小铃木 提供的服务",
+      "params": {
+        "message": {
+          "type": "Any"
+        }
+      },
+      "tags": [
+        "我的小铃木"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "我的小铃木 API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/hello"
+      }
+    },
+    {
+      "name": "info",
+      "summary": "我的小铃木的/info接口",
+      "description": "由 我的小铃木 提供的服务",
+      "params": {},
+      "tags": [
+        "我的小铃木"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "我的小铃木 API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/info"
+      }
+    }
+  ]
+}

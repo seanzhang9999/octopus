@@ -1,0 +1,13 @@
+name: "我的小本田"
+share_did:
+  enabled: true
+  shared_did: "did:wba:localhost%3A9527:wba:user:5fea49e183c6c211"
+  path_prefix: "/calculator"
+  primary_agent: false  # 不是主Agent，避免与LLM Agent冲突
+api:
+  - path: "/hello"
+    method: "GET"
+    handler: "hello_handler"
+  - path: "/info"
+    method: "POST"
+    handler: "info_handler"

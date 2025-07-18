@@ -1,0 +1,46 @@
+info:
+  description: 所有与 DID did:wba:localhost%3A9527:wba:user:27c0b1d11180f973 关联的服务接口
+  title: DID did:wba:localhost%3A9527:wba:user:27c0b1d11180f973 API
+  version: 1.0.0
+openapi: 3.0.0
+paths:
+  /add:
+    post:
+      description: 由 代码生成计算器 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: 代码生成计算器的/add接口
+      tags:
+      - 代码生成计算器
+  /multiply:
+    post:
+      description: 由 代码生成计算器 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: 代码生成计算器的/multiply接口
+      tags:
+      - 代码生成计算器

@@ -41,7 +41,7 @@ class Message:
     did="did:wba:localhost%3A9527:wba:user:27c0b1d11180f973",
     shared=True,
     prefix= '/message',
-    primary_agent = True,
+    primary_agent = True, # 用于接收消息 一个did只能一个智能体收消息
     version = "1.0.0",
     tags=["message", "communication", "did"])
 class MessageAgent(BaseAgent):

@@ -4,7 +4,6 @@ Master Agent - Natural language interface for the Octopus multi-agent system.
 
 import logging
 import json
-from encodings.punycode import selective_find
 from pickle import FALSE
 from typing import Any, Dict, List, Optional
 from datetime import datetime
@@ -382,15 +381,16 @@ If no suitable agent is found, respond with:
                 "agent_name": handler['agent_name']
             })
 
-            # 🔧 修复：正确收集API路由信息
+        # 🔧 方案2：使用Agent实例的路由表而不是anp_user的路由表
         for did, agent_dict in agents_info.items():
             for agent_name, agent_info in agent_dict.items():
-                # 通过 AgentManager 获取实际的 Agent 实例
                 try:
                     agent_instance = AgentManager.get_agent(did, agent_name)
-                    if agent_instance and hasattr(agent_instance, 'anp_user'):
+                    if agent_instance and hasattr(agent_instance, 'api_routes'):
                         agent_routes = []
-                        for path, handler in agent_instance.anp_user.api_routes.items():
+
+                        # 直接使用Agent自己的路由表
+                        for path, handler in agent_instance.api_routes.items():
                             handler_name = handler.__name__ if hasattr(handler, '__name__') else 'unknown'
                             agent_routes.append({
                                 "path": path,
@@ -400,10 +400,28 @@ If no suitable agent is found, respond with:
                         status_data["api_routes"].append({
                             "agent_name": agent_name,
                             "did": did,
-                            "routes_count": len(agent_instance.anp_user.api_routes),
+                            "routes_count": len(agent_routes),
                             "routes": agent_routes
+                        })
+                    else:
+                        # 如果Agent实例没有api_routes属性，记录警告
+                        logger.warning(f"Agent {agent_name} has no api_routes attribute")
+                        status_data["api_routes"].append({
+                            "agent_name": agent_name,
+                            "did": did,
+                            "routes_count": 0,
+                            "routes": []
                         })
                 except Exception as e:
                     logger.error(f"Error getting agent instance for {did}/{agent_name}: {e}")
+                    # 即使出错也要添加一个空记录，保持JSON结构完整
+                    status_data["api_routes"].append({
+                        "agent_name": agent_name,
+                        "did": did,
+                        "routes_count": 0,
+                        "routes": [],
+                        "error": str(e)
+                    })
+
         import json
         return json.dumps(status_data, ensure_ascii=False, indent=2)

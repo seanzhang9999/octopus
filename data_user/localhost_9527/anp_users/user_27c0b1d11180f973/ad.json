@@ -12,7 +12,7 @@
   },
   "description": "Services provided by DID did:wba:localhost%3A9527:wba:user:27c0b1d11180f973",
   "version": "0.1.0",
-  "created_at": "2025-07-19T19:29:52.353081",
+  "created_at": "2025-07-20T17:01:05.553685",
   "security_definitions": {
     "didwba_sc": {
       "scheme": "didwba",
@@ -42,30 +42,72 @@
     {
       "@type": "ad:StructuredInterface",
       "protocol": "HTTP",
-      "name": "add",
-      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/add",
-      "description": "代码生成计算器 API 路径 /add 的端点 (处理器: bound_method)"
+      "name": "text_processor_analyze_sentiment",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/text_processor/analyze_sentiment",
+      "description": "text_processor API 路径 /text_processor/analyze_sentiment 的端点 (处理器: bound_method)"
     },
     {
       "@type": "ad:StructuredInterface",
       "protocol": "HTTP",
-      "name": "multiply",
-      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/multiply",
-      "description": "代码生成计算器 API 路径 /multiply 的端点 (处理器: bound_method)"
+      "name": "text_processor_count_words",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/text_processor/count_words",
+      "description": "text_processor API 路径 /text_processor/count_words 的端点 (处理器: bound_method)"
     },
     {
       "@type": "ad:StructuredInterface",
       "protocol": "HTTP",
-      "name": "add",
-      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/add",
-      "description": "代码生成计算器 API 路径 /add 的端点 (处理器: bound_method)"
+      "name": "text_processor_extract_keywords",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/text_processor/extract_keywords",
+      "description": "text_processor API 路径 /text_processor/extract_keywords 的端点 (处理器: bound_method)"
     },
     {
       "@type": "ad:StructuredInterface",
       "protocol": "HTTP",
-      "name": "multiply",
-      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/multiply",
-      "description": "代码生成计算器 API 路径 /multiply 的端点 (处理器: bound_method)"
+      "name": "text_processor_summarize_text",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/text_processor/summarize_text",
+      "description": "text_processor API 路径 /text_processor/summarize_text 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "message_clear_history",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/message/clear_history",
+      "description": "message_agent API 路径 /message/clear_history 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "message_get_message_history",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/message/get_message_history",
+      "description": "message_agent API 路径 /message/get_message_history 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "message_get_statistics",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/message/get_statistics",
+      "description": "message_agent API 路径 /message/get_statistics 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "message_send_message",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/message/send_message",
+      "description": "message_agent API 路径 /message/send_message 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "master_get_status",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/master/get_status",
+      "description": "master_agent API 路径 /master/get_status 的端点 (处理器: bound_method)"
+    },
+    {
+      "@type": "ad:StructuredInterface",
+      "protocol": "HTTP",
+      "name": "master_process_nlp",
+      "url": "/agent/api/did:wba:localhost%3A9527:wba:user:27c0b1d11180f973/master/process_nlp",
+      "description": "master_agent API 路径 /master/process_nlp 的端点 (处理器: bound_method)"
     }
   ]
 }

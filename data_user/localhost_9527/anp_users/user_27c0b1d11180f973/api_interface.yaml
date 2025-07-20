@@ -4,9 +4,9 @@ info:
   version: 1.0.0
 openapi: 3.0.0
 paths:
-  /add:
+  /master/get_status:
     post:
-      description: 由 代码生成计算器 提供的服务
+      description: 由 master_agent 提供的服务
       requestBody:
         content:
           application/json:
@@ -21,12 +21,12 @@ paths:
               schema:
                 type: object
           description: 返回结果
-      summary: 代码生成计算器的/add接口
+      summary: master_agent的/master/get_status接口
       tags:
-      - 代码生成计算器
-  /multiply:
+      - master_agent
+  /master/process_nlp:
     post:
-      description: 由 代码生成计算器 提供的服务
+      description: 由 master_agent 提供的服务
       requestBody:
         content:
           application/json:
@@ -41,6 +41,166 @@ paths:
               schema:
                 type: object
           description: 返回结果
-      summary: 代码生成计算器的/multiply接口
+      summary: master_agent的/master/process_nlp接口
       tags:
-      - 代码生成计算器
+      - master_agent
+  /message/clear_history:
+    post:
+      description: 由 message_agent 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: message_agent的/message/clear_history接口
+      tags:
+      - message_agent
+  /message/get_message_history:
+    post:
+      description: 由 message_agent 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: message_agent的/message/get_message_history接口
+      tags:
+      - message_agent
+  /message/get_statistics:
+    post:
+      description: 由 message_agent 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: message_agent的/message/get_statistics接口
+      tags:
+      - message_agent
+  /message/send_message:
+    post:
+      description: 由 message_agent 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: message_agent的/message/send_message接口
+      tags:
+      - message_agent
+  /text_processor/analyze_sentiment:
+    post:
+      description: 由 text_processor 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: text_processor的/text_processor/analyze_sentiment接口
+      tags:
+      - text_processor
+  /text_processor/count_words:
+    post:
+      description: 由 text_processor 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: text_processor的/text_processor/count_words接口
+      tags:
+      - text_processor
+  /text_processor/extract_keywords:
+    post:
+      description: 由 text_processor 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: text_processor的/text_processor/extract_keywords接口
+      tags:
+      - text_processor
+  /text_processor/summarize_text:
+    post:
+      description: 由 text_processor 提供的服务
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: 返回结果
+      summary: text_processor的/text_processor/summarize_text接口
+      tags:
+      - text_processor

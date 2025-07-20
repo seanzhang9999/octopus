@@ -10,7 +10,8 @@
       "Bash(uv run:*)",
       "Bash(uv sync:*)",
       "Bash(env)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }

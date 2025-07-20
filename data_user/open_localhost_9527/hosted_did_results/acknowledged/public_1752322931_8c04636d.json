@@ -1,0 +1,36 @@
+{
+  "result_id": "public_1752322931_8c04636d",
+  "request_id": "8c04636d-d604-4583-94fe-26be483741d4",
+  "requester_did": "did:wba:agent-did.com:test:public",
+  "requester_id": "public",
+  "success": true,
+  "created_time": 1752322931.437556,
+  "host": "open.localhost",
+  "port": 9527,
+  "hosted_did_document": {
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/suites/jws-2020/v1",
+      "https://w3id.org/security/suites/secp256k1-2019/v1"
+    ],
+    "id": "did:wba:open.localhost%3A9527:test:e6f320f0bf44a68d",
+    "verificationMethod": [
+      {
+        "id": "did:wba:open.localhost%3A9527:test:e6f320f0bf44a68d#key-1",
+        "type": "EcdsaSecp256k1VerificationKey2019",
+        "controller": "did:wba:open.localhost%3A9527:test:e6f320f0bf44a68d",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "secp256k1",
+          "x": "kNcfVufb4qxUpTC7kT6V56zSFEXbyo3nTDUFxqaZbKs",
+          "y": "upHpNoIm8h6cDRZqNWjb4VXbaniq2zz43yQoiR8Zfqs",
+          "kid": "4QOVubQtyJL_fzKreUfKDTOjrYAFRsq6XZ4Itqn2jLg"
+        }
+      }
+    ],
+    "authentication": [
+      "did:wba:open.localhost%3A9527:test:e6f320f0bf44a68d#key-1"
+    ]
+  },
+  "acknowledged_time": 1752322931.7002518
+}

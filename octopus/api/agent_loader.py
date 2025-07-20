@@ -31,6 +31,7 @@ def load_all_agents() -> List[str]:
     # Import and register sub-agents
     agent_modules = [
         ("octopus.agents.text_processor_agent", "TextProcessorAgent"),
+        ("octopus.agents.message_agent.message_agent", "MessageAgent"),
         # Add more agent modules here as they are created
     ]
     
@@ -38,6 +39,8 @@ def load_all_agents() -> List[str]:
         try:
             module = importlib.import_module(module_name)
             agent_class = getattr(module, class_name)
+            agent_instance = agent_class().agent  # 创建实例，触发注册
+            logger.info(f"Loaded and registered {class_name} from {module_name}")
             logger.info(f"Loaded {class_name} from {module_name}")
             loaded_agents.append(class_name.lower().replace("agent", ""))
         except Exception as e:

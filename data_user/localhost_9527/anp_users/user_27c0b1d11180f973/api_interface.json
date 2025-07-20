@@ -7,39 +7,183 @@
   },
   "methods": [
     {
-      "name": "add",
-      "summary": "代码生成计算器的/add接口",
-      "description": "由 代码生成计算器 提供的服务",
+      "name": "text_processor.analyze_sentiment",
+      "summary": "text_processor的/text_processor/analyze_sentiment接口",
+      "description": "由 text_processor 提供的服务",
       "params": {},
       "tags": [
-        "代码生成计算器"
+        "text_processor"
       ],
       "meta": {
         "openapi": "3.0.0",
         "info": {
-          "title": "代码生成计算器 API",
+          "title": "text_processor API",
           "version": "1.0.0"
         },
         "httpMethod": "POST",
-        "endpoint": "/add"
+        "endpoint": "/text_processor/analyze_sentiment"
       }
     },
     {
-      "name": "multiply",
-      "summary": "代码生成计算器的/multiply接口",
-      "description": "由 代码生成计算器 提供的服务",
+      "name": "text_processor.count_words",
+      "summary": "text_processor的/text_processor/count_words接口",
+      "description": "由 text_processor 提供的服务",
       "params": {},
       "tags": [
-        "代码生成计算器"
+        "text_processor"
       ],
       "meta": {
         "openapi": "3.0.0",
         "info": {
-          "title": "代码生成计算器 API",
+          "title": "text_processor API",
           "version": "1.0.0"
         },
         "httpMethod": "POST",
-        "endpoint": "/multiply"
+        "endpoint": "/text_processor/count_words"
+      }
+    },
+    {
+      "name": "text_processor.extract_keywords",
+      "summary": "text_processor的/text_processor/extract_keywords接口",
+      "description": "由 text_processor 提供的服务",
+      "params": {},
+      "tags": [
+        "text_processor"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "text_processor API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/text_processor/extract_keywords"
+      }
+    },
+    {
+      "name": "text_processor.summarize_text",
+      "summary": "text_processor的/text_processor/summarize_text接口",
+      "description": "由 text_processor 提供的服务",
+      "params": {},
+      "tags": [
+        "text_processor"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "text_processor API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/text_processor/summarize_text"
+      }
+    },
+    {
+      "name": "message.clear_history",
+      "summary": "message_agent的/message/clear_history接口",
+      "description": "由 message_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "message_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "message_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/message/clear_history"
+      }
+    },
+    {
+      "name": "message.get_message_history",
+      "summary": "message_agent的/message/get_message_history接口",
+      "description": "由 message_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "message_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "message_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/message/get_message_history"
+      }
+    },
+    {
+      "name": "message.get_statistics",
+      "summary": "message_agent的/message/get_statistics接口",
+      "description": "由 message_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "message_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "message_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/message/get_statistics"
+      }
+    },
+    {
+      "name": "message.send_message",
+      "summary": "message_agent的/message/send_message接口",
+      "description": "由 message_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "message_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "message_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/message/send_message"
+      }
+    },
+    {
+      "name": "master.get_status",
+      "summary": "master_agent的/master/get_status接口",
+      "description": "由 master_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "master_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "master_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/master/get_status"
+      }
+    },
+    {
+      "name": "master.process_nlp",
+      "summary": "master_agent的/master/process_nlp接口",
+      "description": "由 master_agent 提供的服务",
+      "params": {},
+      "tags": [
+        "master_agent"
+      ],
+      "meta": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "master_agent API",
+          "version": "1.0.0"
+        },
+        "httpMethod": "POST",
+        "endpoint": "/master/process_nlp"
       }
     }
   ]

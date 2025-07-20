@@ -95,6 +95,7 @@ To create a new agent:
 from octopus.agents.base_agent import BaseAgent
 from octopus.router.agents_router import register_agent, agent_method
 
+
 @register_agent(name="my_agent", description="Description of what this agent does")
 class MyAgent(BaseAgent):
     @agent_method(description="Process some data")

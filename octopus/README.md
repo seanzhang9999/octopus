@@ -118,6 +118,7 @@ python octopus/example_usage.py --direct
 from octopus.agents.base_agent import BaseAgent
 from octopus.router.agents_router import register_agent, agent_method
 
+
 @register_agent(
     name="my_agent",
     description="My custom agent",
@@ -126,7 +127,7 @@ from octopus.router.agents_router import register_agent, agent_method
 )
 class MyAgent(BaseAgent):
     """My custom agent implementation."""
-    
+
     def __init__(self):
         super().__init__(
             name="MyAgent",

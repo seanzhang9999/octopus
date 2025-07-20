@@ -1,0 +1,11 @@
+{
+  "result_id": "5fea49e183c6c211_1752321188_6bbf131c",
+  "request_id": "6bbf131c-c7ba-4042-9227-5291a5a2c6fa",
+  "requester_did": "did:wba:localhost%3A9527:wba:user:5fea49e183c6c211",
+  "requester_id": "5fea49e183c6c211",
+  "success": false,
+  "created_time": 1752321188.9081879,
+  "host": "open.localhost",
+  "port": 9527,
+  "error_message": "重复的DID申请"
+}

@@ -480,24 +480,26 @@ def process_user_data(
 ### 创建新的子智能体
 
 #### 1. 基本结构
+
 ```python
 from octopus.agents.base_agent import BaseAgent
 from octopus.router.agents_router import register_agent, agent_method
 from typing import Dict, List, Optional
 
+
 @register_agent(
-    name="text_processor",
-    description="文本处理专家智能体",
-    version="1.0.0"
+   name="text_processor",
+   description="文本处理专家智能体",
+   version="1.0.0"
 )
 class TextProcessorAgent(BaseAgent):
-    """文本处理专家智能体，提供多种文本分析和处理功能"""
-    
-    def __init__(self):
-        super().__init__()
-        # 初始化特定资源
-        self.nlp_model = None
-        self.logger.info("Text processor agent initialized")
+   """文本处理专家智能体，提供多种文本分析和处理功能"""
+
+   def __init__(self):
+      super().__init__()
+      # 初始化特定资源
+      self.nlp_model = None
+      self.logger.info("Text processor agent initialized")
 ```
 
 #### 2. 方法定义与注册

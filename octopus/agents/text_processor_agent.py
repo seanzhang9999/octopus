@@ -6,14 +6,18 @@ import re
 from typing import Dict, List, Optional, Any
 from collections import Counter
 
+from anp_transformer.agent_decorator import agent_class, class_api
 from octopus.agents.base_agent import BaseAgent
 from octopus.router.agents_router import register_agent, agent_method
 
-
-@register_agent(
+@agent_class(
     name="text_processor",
     description="Text processing and analysis agent",
-    version="1.0.0",
+    did="did:wba:localhost%3A9527:wba:user:27c0b1d11180f973",
+    shared=True,
+    prefix= '/text_processor',
+    primary_agent = False,
+    version = "1.0.0",
     tags=["text", "nlp", "analysis"]
 )
 class TextProcessorAgent(BaseAgent):
@@ -25,14 +29,15 @@ class TextProcessorAgent(BaseAgent):
             name="TextProcessor",
             description="Handles text analysis and processing tasks"
         )
-        
-    @agent_method(
+
+
+    @class_api("/count_words",
         description="Count words in text",
         parameters={
             "text": {"description": "Text to analyze"}
         },
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def count_words(self, text: str) -> Dict[str, int]:
         """
         Count words in the given text.
@@ -49,15 +54,15 @@ class TextProcessorAgent(BaseAgent):
             "unique_words": len(set(words)),
             "average_word_length": sum(len(word) for word in words) / len(words) if words else 0
         }
-    
-    @agent_method(
+
+    @class_api("/extract_keywords",
         description="Extract keywords from text",
         parameters={
             "text": {"description": "Text to extract keywords from"},
             "top_n": {"description": "Number of top keywords to return"}
         },
-        returns="list"
-    )
+        returns="list",
+        auto_wrap=True)
     def extract_keywords(self, text: str, top_n: int = 10) -> List[Dict[str, Any]]:
         """
         Extract top keywords from text based on frequency.
@@ -87,14 +92,14 @@ class TextProcessorAgent(BaseAgent):
             {"keyword": word, "frequency": freq}
             for word, freq in top_keywords
         ]
-    
-    @agent_method(
+
+    @class_api("/analyze_sentiment",
         description="Analyze text sentiment (simplified)",
         parameters={
             "text": {"description": "Text to analyze sentiment"}
         },
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def analyze_sentiment(self, text: str) -> Dict[str, Any]:
         """
         Perform simple sentiment analysis on text.
@@ -137,15 +142,14 @@ class TextProcessorAgent(BaseAgent):
             "positive_words": positive_count,
             "negative_words": negative_count
         }
-    
-    @agent_method(
+    @class_api("/summarize_text",
         description="Summarize text (extractive summary)",
         parameters={
             "text": {"description": "Text to summarize"},
             "num_sentences": {"description": "Number of sentences in summary"}
         },
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def summarize_text(self, text: str, num_sentences: int = 3) -> Dict[str, Any]:
         """
         Create a simple extractive summary of the text.

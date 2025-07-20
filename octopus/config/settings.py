@@ -14,11 +14,11 @@ class Settings(BaseSettings):
     # Application
     app_name: str = "Octopus"
     app_version: str = "0.1.0"
-    debug: bool = False
+    debug: bool = True
     
     # Server
-    host: str = "0.0.0.0"
-    port: int = 8000
+    host: str = "localhost"
+    port: int = 9527
     
     # Logging
     log_level: str = "INFO"
@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     openai_api_version: str = "2024-02-01"
     openai_temperature: float = 0.7
     openai_max_tokens: int = 4000
+
+    OPENAI_MODEL_NAME: str = "gpt4.1"
+    OPENAI_API_BASE_URL: str = "https://api.302.ai/v1"
     
     class Config:
         env_file = ".env"

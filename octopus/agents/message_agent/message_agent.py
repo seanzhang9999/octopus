@@ -8,6 +8,8 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 
+from anp_transformer.agent_decorator import agent_class, class_api, class_message_handler
+from anp_transformer.anp_service.agent_message_p2p import agent_msg_post
 from octopus.agents.base_agent import BaseAgent
 from octopus.router.agents_router import register_agent, agent_method
 
@@ -33,14 +35,15 @@ class Message:
         data = asdict(self)
         data['timestamp'] = self.timestamp.isoformat()
         return data
-
-
-@register_agent(
+@agent_class(
     name="message_agent",
     description="Agent for handling message sending and receiving operations",
-    version="1.0.0",
-    tags=["message", "communication", "did"]
-)
+    did="did:wba:localhost%3A9527:wba:user:27c0b1d11180f973",
+    shared=True,
+    prefix= '/message',
+    primary_agent = True,
+    version = "1.0.0",
+    tags=["message", "communication", "did"])
 class MessageAgent(BaseAgent):
     """Agent specialized in message handling and communication."""
     
@@ -65,17 +68,17 @@ class MessageAgent(BaseAgent):
         }
         
         self.logger.info("MessageAgent initialized successfully")
-    
-    @agent_method(
+
+    @class_api("/send_message",
         description="Send a message to a recipient",
         parameters={
-            "message_content": {"description": "Content of the message to send"},
-            "recipient_did": {"description": "DID (Decentralized Identifier) of the message recipient"},
-            "metadata": {"description": "Additional metadata for the message"}
+           "message_content": {"description": "Content of the message to send"},
+           "recipient_did": {"description": "DID (Decentralized Identifier) of the message recipient"},
+           "metadata": {"description": "Additional metadata for the message"}
         },
-        returns="dict"
-    )
-    def send_message(self, message_content: str, recipient_did: str, 
+        returns="dict",
+        auto_wrap=True)
+    async def send_message(self, message_content: str, recipient_did: str,
                     metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Send a message to a specified recipient.
@@ -102,7 +105,13 @@ class MessageAgent(BaseAgent):
                 status="sent",
                 metadata=metadata or {}
             )
-            
+
+            result = await agent_msg_post(
+                caller_agent=message.sender_did,
+                target_agent=message.recipient_did,
+                content=message.content,
+                message_type="text"
+            )
             # Store sent message
             self.sent_messages.append(message)
             
@@ -141,33 +150,28 @@ class MessageAgent(BaseAgent):
                 "timestamp": datetime.now().isoformat(),
                 "status": "failed"
             }
-    
-    @agent_method(
-        description="Receive a message from a sender",
-        parameters={
-            "message_content": {"description": "Content of the received message"},
-            "sender_did": {"description": "DID (Decentralized Identifier) of the message sender"},
-            "metadata": {"description": "Additional metadata for the message"}
-        },
-        returns="dict"
-    )
-    def receive_message(self, message_content: str, sender_did: str,
-                       metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+
+
+    @class_message_handler("text")
+    async def receive_message(self, msg_data) -> Dict[str, Any]:
         """
         Receive a message from a specified sender.
-        
+
         Args:
             message_content: Content of the received message
             sender_did: DID of the message sender
             metadata: Additional metadata for the message
-            
+
         Returns:
             Dictionary containing message details and receive status
         """
         try:
             # Generate unique message ID
             message_id = str(uuid.uuid4())
-            
+
+            message_content = msg_data.get('content', '')
+            sender_did = msg_data.get('sender', '')
+            metadata = msg_data.get('message_type', '')
             # Create message object
             message = Message(
                 id=message_id,
@@ -178,22 +182,22 @@ class MessageAgent(BaseAgent):
                 status="received",
                 metadata=metadata or {}
             )
-            
+
             # Store received message
             self.received_messages.append(message)
-            
+
             # Update conversation history
             conversation_key = f"{sender_did}:{self.agent_id}"
             if conversation_key not in self.message_history:
                 self.message_history[conversation_key] = []
             self.message_history[conversation_key].append(message)
-            
+
             # Update statistics
             self.stats["total_received"] += 1
-            
+
             # Log the operation
             self.logger.info(f"Message received successfully: {message_id} from {sender_did}")
-            
+
             return {
                 "success": True,
                 "message_id": message_id,
@@ -203,10 +207,10 @@ class MessageAgent(BaseAgent):
                 "status": "received",
                 "metadata": message.metadata
             }
-            
+
         except Exception as e:
             self.logger.error(f"Failed to receive message: {str(e)}")
-            
+
             return {
                 "success": False,
                 "error": str(e),
@@ -215,15 +219,15 @@ class MessageAgent(BaseAgent):
                 "timestamp": datetime.now().isoformat(),
                 "status": "failed"
             }
-    
-    @agent_method(
+
+    @class_api("/get_message_history",
         description="Get message history for a specific conversation",
         parameters={
             "other_did": {"description": "DID of the other party in the conversation"},
             "limit": {"description": "Maximum number of messages to return"}
         },
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def get_message_history(self, other_did: str, limit: int = 50) -> Dict[str, Any]:
         """
         Get message history for a specific conversation.
@@ -272,12 +276,14 @@ class MessageAgent(BaseAgent):
                 "message_count": 0,
                 "messages": []
             }
-    
-    @agent_method(
+
+
+
+    @class_api("/get_statistics",
         description="Get message statistics",
         parameters={},
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def get_statistics(self) -> Dict[str, Any]:
         """
         Get message statistics.
@@ -305,14 +311,15 @@ class MessageAgent(BaseAgent):
                 "error": str(e),
                 "statistics": {}
             }
-    
-    @agent_method(
+
+
+    @class_api("/clear_history",
         description="Clear message history",
         parameters={
             "conversation_did": {"description": "DID to clear conversation with (optional, clears all if not specified)"}
         },
-        returns="dict"
-    )
+        returns="dict",
+        auto_wrap=True)
     def clear_history(self, conversation_did: Optional[str] = None) -> Dict[str, Any]:
         """
         Clear message history.

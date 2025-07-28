@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     # OpenAI settings
     openai_api_key: Optional[str] = None
     openai_base_url: Optional[str] = None
-    openai_model: str = "gpt-4o"
+    openai_model: Optional[str] = None
     openai_deployment: Optional[str] = None
     openai_api_version: str = "2024-02-01"
     openai_temperature: float = 0.7
